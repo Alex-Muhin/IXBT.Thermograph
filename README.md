@@ -9,9 +9,7 @@ After being turned on the device is checking SD card and sensors. Then it tries 
 In SENSORS.CFG you can define:
 
 P:<int>		- measurement period in seconds between 1 and 1800 sec (f.g. P:120 - every two minutes)
-
 D:<char>	- decimal point symbol ("." or "," only)
-
 C:<char>	- CSV column delimiter. Only ",", ";" and "	" (tab) are allowed
 
 Below sensor's addreses are enumerated. The addresses are listed in the order in which the thermograph detected the newly connected sensors. 
