@@ -3,7 +3,7 @@ The device is intended to track ambient temperature with several wired sensors 1
 Measurements are being saved to SD card as CSV file.
 ## Assembling
 Thermograph consists of two boards: any kind of Arduino (Amtel 328) and microSD card reader. Voltage is your choice.
-Current script uses pin D10 as CS for SD card reader and D4 for OneWire bus. The bus (D4) is prepulled with ~2.5 kOhm resistor to 3.3v (all the 18B sensors connected to 3.3v power). 
+Current script uses pin D10 as CS for SD card reader and D4 for OneWire bus. The bus (D4) is prepulled with ~2.5 kOhm resistor to 3.3v (all the 18B sensors are powered with 3.3v ). 
 ## Configuring
 After being turned on the device is checking SD card and sensors. Then it tries to read SENSOR.CFG file (see below) and add uregistres sensors in it. 
 In SENSORS.CFG you can define:
