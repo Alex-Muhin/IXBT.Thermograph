@@ -18,7 +18,7 @@ F.e.:
 S:0030-0001-43da-9ef0  
 S:1201-0000-1f67-0028  
 ```
-The device can sevre up to ten sensors (you may schage MAX_SENSORS constant if you need more).   
+The device can serve up to ten sensors (you may increase MAX_SENSORS constant if you need more).   
 ## CSV
 On each session the new Wxxxxxxx.csv file is being created (W0000000.CSV, W0000001.CSV... ect.)  
 Number of columns in the CSV corresponds to number of connected sensors. Column headings consist of "S:" and sensor position in SENSORS.CFG.  
