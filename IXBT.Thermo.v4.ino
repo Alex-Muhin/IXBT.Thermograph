@@ -107,8 +107,8 @@ void setup()
   delay(100);
   
   ////////////////////////// стартуем градусники, сопоставляем, добавляем новые ///////////////////////////
-  sensors.begin();//Инициализация датчиков. По умолчанию для них устанавливается максимальное разрешение - 12бит
-  deviceCount = sensors.getDeviceCount();//сохраняем количество найденных на шине датчиков температуры
+  sensors.begin();// sensors init
+  deviceCount = sensors.getDeviceCount();//sensors count
   DeviceAddress devaddr;
 
   int si, idx;
@@ -137,7 +137,7 @@ void setup()
   if(!deviceCount) return;
   writeSensorArray();
 
-  ////////////////////////// создаём файлик csv ///////////////////////////
+  ////////////////////////// create new csv ///////////////////////////
   for(si=0;si<10000;si++)
   {
     sprintf(curcsv,"W%07d.CSV",si);
@@ -145,19 +145,25 @@ void setup()
       break;
   }
   
+  String ss = "Time";
+  
+  for(si=0;si<savedCount;si++)
+  {
+    if(index2saved[si] < MAX_SENSORS) {
+      sprintf(s,"%cS:%d",COL_SEP,si+1);
+      ss += s;
+    }
+  }
+
+  Serial.println(ss);
   file = sd.open(curcsv, FILE_WRITE);
 
   if (file) {
-    file.print("Time");
-    for(si=0;si<savedCount;si++)
-    {
-      sprintf(s,"%cS:%d",COL_SEP,si+1);
-      file.print(s);
-    }
+    file.print(ss);
     file.print("\n");
     file.close();
   } else {
-    Serial.println("error opening file");
+    Serial.println("error writting csv file");
   }
   delay(600);
 }
@@ -199,13 +205,13 @@ void loop() {
     int i;
     for (i = 0;  i < savedCount;  i++)
     {
-      d += COL_SEP;
       //d += index2saved[i];
       if(index2saved[i] < MAX_SENSORS)
       {
         sensors.getAddress(addr, index2saved[i]);// получаем и сохраняем в массив 64-битный адрес датчика по его текущему индексу
         //printTemperature(addr);
         t = sensors.getTempC(addr);
+        d += COL_SEP;
         d += (int)(t);
         d += DEC_POINT;
         d += ((int)(t*100))%100;
@@ -214,16 +220,15 @@ void loop() {
 
     Serial.print(d);
 
-
     file = sd.open(curcsv, FILE_WRITE);
 
     if (file) {
       // записываем строку в файл
       file.println(d);
       file.close();
-      Serial.println("...  written");
+      Serial.println("    ...written");
     } else {
-      //Serial.println("Card failed, or not present");
+      Serial.println("    ...no SD");
     }
 
   }
@@ -333,7 +338,7 @@ void writeSensorArray()
   // Create the file.
   
   if (!file.open(CONFNAME, FILE_WRITE)) {
-    error("open failed");
+    Serial.println("open failed");
     f = false;
   }
   sprintf(s, "P:%d\nC:%c\nD:%c", MEASURE_PERIOD, COL_SEP, DEC_POINT);
