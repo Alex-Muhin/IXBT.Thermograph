@@ -4,7 +4,7 @@ Measurements are saved to SD card as CSV file.
 ## Assembling
 Thermograph is built of two boards: any kind of Arduino (Amtel 328); and microSD card reader.  
 Current script uses pin D10 as CS for SD card reader and D4 for OneWire bus. The bus (D4) is prepulled with ~2.5 kOhm resistor to 3.3v (all the 18B20 sensors are powered with 3.3v ). 
-## Senыor connector (jack 3.5mm)
+## Sensor connector (jack 3.5mm)
 ```
 
 	HHHHHHHHHHHH--HHHHHH--HHH\/H\
