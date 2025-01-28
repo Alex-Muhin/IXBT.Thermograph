@@ -33,4 +33,4 @@ The device can serve up to ten sensors (you may increase MAX_SENSORS constant if
 ## CSV
 On each session the new Wxxxxxxx.csv file is being created (W0000000.CSV, W0000001.CSV... ect.)  
 Number of columns in the CSV corresponds to number of connected sensors. Column headings consist of "S:" and sensor position in SENSORS.CFG.  
-So it's thoughtful to register all of your sensors before usage: just tag all of them sequntially (1,2,3,...10) and then connect one by one to unpowered device and turn it on. The SENSORS.CSV file will be filled with your sensors' addresses in order of marks you made. Later you'll be able to chage the sequence.
+So it's thoughtful to register all of your sensors before usage: just tag all of them sequntially (1,2,3,...10) and then connect one by one to unpowered device and turn it on. The SENSORS.CSV file will be filled with your sensors' addresses in order of marks you made. Later you'll be able to change the sequence.
